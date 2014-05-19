@@ -34,7 +34,7 @@ older Rails try using an older version of the client on http://github.com/rubyca
 
 if you're using Rails, it's easier to install the CAS client as a gem with bundler. To do this add gem in your Gemfile
 
-gem 'rubycas-client', :git => 'https://github.com/Giannandrea/rubycas-client.git'
+<i>gem 'rubycas-client', :git => 'https://github.com/Giannandrea/rubycas-client.git'</i>
 
 For a first test you can install gem using standard gem
 gem install rubycas-client -s https://github.com/Giannandrea/rubycas-client.git
@@ -56,9 +56,9 @@ Otherwise, continue reading for a step-by-step guide for integrating RubyCAS-Cli
 
 After installing RubyCAS-Client as a gem (see above), add the following to your app's <tt>config/initializers/cas_client.rb</tt>:
   
-  CASClient::Frameworks::Rails::Filter.configure(
+<i>  CASClient::Frameworks::Rails::Filter.configure(
     :cas_base_url => "https://cas.example.foo/"
-  )
+  )</i>
   
 (Change the <tt>:cas_base_url</tt> value to your CAS server's base URL; also note that many CAS servers like RubyCas-server are configured
 with a base URL that looks more like "https://cas.example.foo/cas".)
