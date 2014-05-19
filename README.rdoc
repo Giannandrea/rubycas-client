@@ -1,7 +1,7 @@
-{<img src="https://secure.travis-ci.org/rubycas/rubycas-client.png" alt="Build Status" />}[http://travis-ci.org/rubycas/rubycas-client]
-{<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/rubycas/rubycas-client]
 
 = RubyCAS-Client 
+This is a fork of the official RubyCAS-Client in order to run it on Rails4.
+Below all informations about the autohor.
 
 Authors::   Matt Zukowski <matt AT roughest DOT net> and Matt Campbell <matt AT soupmatt DOT com>; inspired by code by Ola Bini <ola.bini AT ki DOT se> and Matt Walker <mwalker AT tamu DOT edu>
 Copyright:: Portions contributed by Matt Zukowski are copyright (c) 2009 Urbacon Ltd.
@@ -27,36 +27,17 @@ adapted for other frameworks (for example an implementation for Camping is avail
 library).
 
 
-== Getting help and reporting problems
-
-If you need help, try posting to the RubyCAS discussion group at http://groups.google.com/group/rubycas-server.
-
-To report problems, please use the Google Code issue tracker at http://code.google.com/p/rubycas-client/issues/list.
-
-API documentation (i.e. the RDocs) are available at http://rubycas-client.rubyforge.org
-
-
 == Installation
 
-The current version of RubyCAS-Client should work with Rails 2.3.6 and up. For compatibility with
-older Rails try using an older version of the client.
+The current version of RubyCAS-Client should work with Rails 4.1.1 and up. For compatibility with
+older Rails try using an older version of the client on http://github.com/rubycas/rubycas-client.
 
-You can download the latest version of RubyCAS-Client from the project's rubyforge page at 
-http://rubyforge.org/projects/rubycas-client.
+if you're using Rails, it's easier to install the CAS client as a gem with bundler. To do this add gem in your Gemfile
 
-However, if you're using Rails, it's easier to install the CAS client as a plugin:
+gem 'rubycas-client', :git => 'https://github.com/Giannandrea/rubycas-client.git'
 
-  cd <your rails app>
-  ./script/plugin install git://github.com/rubycas/rubycas-client.git
-
-Alternatively, the library is also installable as a RubyGem[http://rubygems.org]:
-
-  gem install rubycas-client
-  
-If your Rails application is under Subversion control, you can also install the plugin as an svn:external, ensuring that
-you always have the latest bleeding-edge version of RubyCAS-Client:
-
-  ./script/plugin install -x http://svn.github.com/rubycas/rubycas-client.git
+For a first test you can install gem using standard gem
+gem install rubycas-client -s https://github.com/Giannandrea/rubycas-client.git
 
 
 == Usage Examples
@@ -64,8 +45,7 @@ you always have the latest bleeding-edge version of RubyCAS-Client:
 If you'd rather jump right in, have a look at the example Rails and Merb applications pre-configured for CAS
 authentication:
 
-http://github.com/rubycas/rubycas-client/tree/master/examples
-
+https://github.com/Giannandrea/rubycas-client/tree/master/examples/rails4/
 
 Otherwise, continue reading for a step-by-step guide for integrating RubyCAS-Client with Rails:
 
@@ -74,14 +54,13 @@ Otherwise, continue reading for a step-by-step guide for integrating RubyCAS-Cli
 
 <i>Note that from this point on we are assuming that you have a working CAS server up and running!</i>
 
-After installing RubyCAS-Client as a plugin (see above), add the following to your app's <tt>config/environment.rb</tt>
-(make sure that you put it at the bottom of the file, *after* the Rails Initializer):
+After installing RubyCAS-Client as a gem (see above), add the following to your app's <tt>config/initializers/cas_client.rb</tt>:
   
   CASClient::Frameworks::Rails::Filter.configure(
     :cas_base_url => "https://cas.example.foo/"
   )
   
-(Change the <tt>:cas_base_url</tt> value to your CAS server's base URL; also note that many CAS servers are configured
+(Change the <tt>:cas_base_url</tt> value to your CAS server's base URL; also note that many CAS servers like RubyCas-server are configured
 with a base URL that looks more like "https://cas.example.foo/cas".)
 
 Then, in your <tt>app/controllers/application.rb</tt> (or in whichever controller you want to add the CAS filter for):
